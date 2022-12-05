@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react"
+import React, { useContext, useState, useEffect } from "react";
 import {
   Container,
   Row,
@@ -8,15 +8,15 @@ import {
   Form,
   Button,
 } from "react-bootstrap";
-import { useMutation, useQuery } from "react-query"
-import { useNavigate } from "react-router-dom"
+import { useMutation, useQuery } from "react-query";
+import { useNavigate } from "react-router-dom";
 import { API } from "../config/api";
 import { UserContext } from "../context/userContext";
 import Removeicon from "../components/images/removeicon.png";
 
 const Cart = () => {
   const [state] = useContext(UserContext);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const myMidtransClientKey = process.env.REACT_APP_MIDTRANS_CLIENT_KEY;
 
   const { data: order, refetch } = useQuery("ordersCache", async () => {
@@ -59,7 +59,7 @@ const Cart = () => {
         "Content-type": "application/json",
       },
     };
-    
+
     const data = {
       ID: order[0].transaction_id,
       Name: user.fullname,

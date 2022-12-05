@@ -67,12 +67,10 @@ function DetailProduct() {
 
     const bodytrans = JSON.stringify(datatrans)
     const response = await API.get("/my-order")
-    console.log("ini data response", response)
-    // console.log("ini data response status", response.data.data.status)
+    console.log("data response", response)
 
     await API.post("/transaction", bodytrans)
   
-
     const body = JSON.stringify(data)
     await API.post("/order", body, config)
 

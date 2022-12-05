@@ -44,7 +44,7 @@ const TransactionUser = () => {
                       </label>
                       <br />
                       <label style={{ fontSize: "10px" }}>
-                        <span className="fw-bold">Saturday</span> 5, March 2020
+                        <span className="fw-bold">Saturday</span> 5, Desember 2022
                       </label>
                       <br />
                     </div>

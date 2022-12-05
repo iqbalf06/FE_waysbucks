@@ -48,7 +48,7 @@ function IncomeTransaction() {
             <td>{e.phone}</td>
             <td style={{ color: "#061E99" }}>{formatIDR.format(e.total)}</td>
             <td style={{ color: "#FF9900" }}>
-                        <p style={{color:"#00d1ff"}}>Success</p>
+                        <p style={{color:"#00d1ff"}}>{e.status}</p>
                       </td>
             <td>
               <Stack
