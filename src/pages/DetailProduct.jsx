@@ -30,16 +30,16 @@ function DetailProduct() {
     return response.data.data
   })
 
-  const [toppingCheck, setToppingCheck] = useState([])
+  const [toppingCheck, setToppingChecklist] = useState([])
   const [toppingPrice, setToppingPrice] = useState(0)
 
   const handleChecked = (id, price) => {
     let filterID = toppingCheck.filter((e) => e === id)
     if (filterID[0] !== id) {
-      setToppingCheck([...toppingCheck, id])
+      setToppingChecklist([...toppingCheck, id])
       setToppingPrice(toppingPrice + price)
     } else {
-      setToppingCheck(toppingCheck.filter((e) => e !== id))
+      setToppingChecklist(toppingCheck.filter((e) => e !== id))
       setToppingPrice(toppingPrice - price)
     }
   }
@@ -68,10 +68,10 @@ function DetailProduct() {
     const bodytrans = JSON.stringify(datatrans)
     const response = await API.get("/my-order")
     console.log("ini data response", response)
-    console.log("ini data response status", response.data.data.status)
+    // console.log("ini data response status", response.data.data.status)
 
     await API.post("/transaction", bodytrans)
-    console.log("ini data didalam if", response)
+  
 
     const body = JSON.stringify(data)
     await API.post("/order", body, config)

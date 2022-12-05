@@ -52,7 +52,7 @@ const Cart = () => {
     }
   });
 
-  console.log("ini data order",order);
+  // console.log("data order",order);
   const handleSubmit = useMutation(async (e) => {
     const config = {
       headers: {
@@ -67,11 +67,11 @@ const Cart = () => {
       Phone: user.phone,
       UserID: user.id,
       Total: Total,
-      Status: "pending",
+      Status: "Success",
     };
+
     refetch();
     const response = await API.patch("/transaction", data, config);
-    console.log("ini data token", response);
     const token = response.data.data.token;
 
     window.snap.pay(token, {
@@ -100,7 +100,7 @@ const Cart = () => {
     //change this to the script source you want to load, for example this is snap.js sandbox env
     const midtransScriptUrl = "https://app.sandbox.midtrans.com/snap/snap.js";
     //change this according to your client-key
-    const myMidtransClientKey = "Client key here ...";
+    const myMidtransClientKey = "SB-Mid-client-nkkz_DCDEGIFjc-n";
 
     let scriptTag = document.createElement("script");
     scriptTag.src = midtransScriptUrl;

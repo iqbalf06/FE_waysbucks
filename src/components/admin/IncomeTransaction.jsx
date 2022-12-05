@@ -20,27 +20,6 @@ function IncomeTransaction() {
     return response.data.data
   })
 
-  const handleSuccess = async (id) => {
-    const form = {
-      status: "success",
-      id: id,
-    }
-    const body = JSON.stringify(form)
-
-    await API.patch("/transUpdate/" + id, body)
-    refetch()
-  }
-
-  const handleCancel = async (id) => {
-    const form = {
-      status: "cancel",
-      id: id,
-    }
-    const body = JSON.stringify(form)
-
-    await API.patch("/transUpdate/" + id, body)
-    refetch()
-  }
 
   return (
     <Container>
@@ -60,7 +39,7 @@ function IncomeTransaction() {
           </tr>
         </thead>
         <tbody style={{ borderColor: "#828282" }}>
-        {trans?.map((e, index) => {
+         {trans?.map((e, index) => {
           return(
           <tr style={{ borderColor: "#828282" }} key={index}>
             <td>{e.id}</td>
@@ -68,15 +47,8 @@ function IncomeTransaction() {
             <td>{e.address}</td>
             <td>{e.phone}</td>
             <td style={{ color: "#061E99" }}>{formatIDR.format(e.total)}</td>
-            <td style={{ color: "#FF9900" }}>{e?.status === "pending" ? (
-                        <p style={{color:"#ff9900"}}>Waiting Approve</p>
-                      ) : e?.status === "cancel" ? (
-                        <p style={{color:"#e83939"}}>Cancel</p>
-                      ) : e?.status === "success" ? (
-                        <p style={{color:"#78a85a"}}>On The Way</p>
-                      ) : (
-                        <p style={{color:"#00d1ff"}}>Waiting Payment</p>
-                      )}
+            <td style={{ color: "#FF9900" }}>
+                        <p style={{color:"#00d1ff"}}>Success</p>
                       </td>
             <td>
               <Stack
@@ -84,47 +56,18 @@ function IncomeTransaction() {
                 gap={3}
                 className="justify-content-center"
               >
-                {e?.status === "pending" ? (
-                  <>
-                <Button
-                  className="w-50 p-0"
-                  size="sm"
-                  style={{ border: "white", backgroundColor: "#FF0742" }}
-                  onClick={() => {
-                    handleCancel(e?.id)
-                  }}
-                >
-                  Cancel
-                </Button>
-                <Button
-                  className="w-50 p-0"
-                  size="sm"
-                  style={{ border: "white", backgroundColor: "#0ACF83" }}
-                  onClick={() => {
-                    handleSuccess(e?.id)
-                  }}
-                >
-                  Approve
-                </Button>
-                </>
-                ) : e?.status === "cancel" ? (
-                  <img
-                    className="justify-content-center"
-                    src={Cancel}
-                  />
-                ) : e?.status === "success" ? (
                   <img
                     className="justify-content-center"
                     src={Approve}
                   />
-                ) : (
-                  <p style={{color:"#00d1ff"}}>Waiting Payment</p>
-                )}
+
+                
               </Stack>
             </td>
           </tr>
           )
         })}
+        
         </tbody>
       </Table>
     </Container>
